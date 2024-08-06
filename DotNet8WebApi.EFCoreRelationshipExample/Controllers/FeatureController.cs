@@ -29,5 +29,12 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Controllers
             var result = await _featureRepository.CreateFeature(requestModel);
             return Content(result);
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateFeature([FromBody] FeatureRequestModel requestModel, string id)
+        {
+            var result = await _featureRepository.UpdateFeature(requestModel, id);
+            return Content(result);
+        }
     }
 }
