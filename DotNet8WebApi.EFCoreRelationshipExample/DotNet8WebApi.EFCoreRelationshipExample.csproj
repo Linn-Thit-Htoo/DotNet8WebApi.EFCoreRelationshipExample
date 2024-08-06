@@ -22,8 +22,4 @@
     <PackageReference Include="Ulid" Version="1.3.4" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Models\PropertyFeature\" />
-  </ItemGroup>
-
 </Project>
