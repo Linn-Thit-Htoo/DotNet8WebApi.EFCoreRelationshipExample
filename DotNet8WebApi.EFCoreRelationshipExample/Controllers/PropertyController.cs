@@ -32,10 +32,11 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Controllers
             return Content(lst);
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> CreateProperty([FromBody] PropertyRequestModel requestModel)
-        //{
-
-        //}
+        [HttpPost]
+        public async Task<IActionResult> CreateProperty([FromBody] PropertyRequestModel requestModel)
+        {
+            var result = await _propertyRepository.CreateProperty(requestModel);
+            return Content(result);
+        }
     }
 }
