@@ -1,0 +1,6 @@
+@DotNet8WebApi.EFCoreRelationshipExample_HostAddress = http://localhost:5196
+
+GET {{DotNet8WebApi.EFCoreRelationshipExample_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
