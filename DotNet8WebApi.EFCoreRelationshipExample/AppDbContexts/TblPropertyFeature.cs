@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace DotNet8WebApi.EFCoreRelationshipExample.AppDbContexts;
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.AppDbContexts;
 
 public partial class TblPropertyFeature
 {
