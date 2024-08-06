@@ -8,7 +8,9 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Extensions
     {
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services, WebApplicationBuilder builder)
         {
-
+            services.AddDbContextService(builder)
+                .AddRepositoryService();
+            return services;
         }
 
         private static IServiceCollection AddDbContextService(this IServiceCollection services, WebApplicationBuilder builder)
