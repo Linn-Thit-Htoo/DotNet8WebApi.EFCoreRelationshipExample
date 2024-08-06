@@ -15,10 +15,11 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Controllers
             _featureRepository = featureRepository;
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> GetFeature()
-        //{
-
-        //}
+        [HttpGet]
+        public async Task<IActionResult> GetFeature()
+        {
+            var result = await _featureRepository.GetFeatureList();
+            return Content(result);
+        }
     }
 }
