@@ -1,5 +1,6 @@
 ﻿using DotNet8WebApi.EFCoreRelationshipExample.AppDbContexts;
 using DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature;
+using DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property;
 using Microsoft.EntityFrameworkCore;
 
 namespace DotNet8WebApi.EFCoreRelationshipExample.Extensions
@@ -27,6 +28,7 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Extensions
         private static IServiceCollection AddRepositoryService(this IServiceCollection services)
         {
             services.AddScoped<IFeatureRepository, FeatureRepository>();
+            services.AddScoped<IPropertyRepository, PropertyRepository>();
             return services;
         }
     }

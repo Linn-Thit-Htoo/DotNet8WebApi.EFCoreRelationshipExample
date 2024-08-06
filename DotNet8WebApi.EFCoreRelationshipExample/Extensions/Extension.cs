@@ -1,5 +1,6 @@
 ﻿using DotNet8WebApi.EFCoreRelationshipExample.AppDbContexts;
 using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
+using DotNet8WebApi.EFCoreRelationshipExample.Models.Property;
 
 namespace DotNet8WebApi.EFCoreRelationshipExample.Extensions
 {
@@ -20,6 +21,26 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Extensions
             {
                 FeatureId = Convert.ToString(Ulid.NewUlid())!,
                 FeatureName = requestModel.FeatureName
+            };
+        }
+
+        public static TblProperty ToEntity(this PropertyRequestModel requestModel)
+        {
+            return new TblProperty
+            {
+                PropertyId = Convert.ToString(Ulid.NewUlid())!,
+                PropertyName = requestModel.PropertyName,
+                IsActive = true
+            };
+        }
+
+        public static TblPropertyFeature ToEntity(this PropertyFeatureRequestModel requestModel, string propertyId)
+        {
+            return new TblPropertyFeature
+            {
+                Id = Convert.ToString(Ulid.NewUlid())!,
+                PropertyId = propertyId,
+                FeatureId = requestModel.FeatureId
             };
         }
     }
