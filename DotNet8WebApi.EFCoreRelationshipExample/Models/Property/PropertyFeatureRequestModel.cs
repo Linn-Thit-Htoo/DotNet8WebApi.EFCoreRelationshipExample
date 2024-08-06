@@ -1,7 +1,6 @@
-﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Models.Property
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Models.Property;
+
+public class PropertyFeatureRequestModel
 {
-    public class PropertyFeatureRequestModel
-    {
-        public string FeatureId { get; set; } = null!;
-    }
+    public string FeatureId { get; set; } = null!;
 }
