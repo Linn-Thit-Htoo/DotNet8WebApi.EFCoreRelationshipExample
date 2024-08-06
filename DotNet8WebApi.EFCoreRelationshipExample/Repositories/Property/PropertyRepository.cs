@@ -1,72 +1,77 @@
-﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property;
+
+public class PropertyRepository : IPropertyRepository
 {
-    public class PropertyRepository : IPropertyRepository
+    private readonly EfcoreTableJoinContext _context;
+
+    public PropertyRepository(EfcoreTableJoinContext context)
     {
-        private readonly EfcoreTableJoinContext _context;
+        _context = context;
+    }
 
-        public PropertyRepository(EfcoreTableJoinContext context)
+    public async Task<Result<PropertyListResponseModel>> GetPropertyList()
+    {
+        Result<PropertyListResponseModel> responseModel;
+        try
         {
-            _context = context;
-        }
+            var propertyFeatures = await _context
+                .TblPropertyFeatures.Include(x => x.Property)
+                .Include(x => x.Feature)
+                .ToListAsync();
 
-        public async Task<Result<PropertyListResponseModel>> GetPropertyList()
-        {
-            Result<PropertyListResponseModel> responseModel;
-            try
-            {
-                var propertyFeatures = await _context.TblPropertyFeatures
-                    .Include(x => x.Property)
-                    .Include(x => x.Feature)
-                    .ToListAsync();
-
-                var lst = propertyFeatures.GroupBy(pf => pf.Property.PropertyId)
-                    .Select(group => new PropertyDataModel
+            var lst = propertyFeatures
+                .GroupBy(pf => pf.Property.PropertyId)
+                .Select(group => new PropertyDataModel
+                {
+                    Property = new PropertyModel
                     {
-                        Property = new PropertyModel
-                        {
-                            PropertyId = group.First().Property.PropertyId,
-                            PropertyName = group.First().Property.PropertyName
-                        },
-                        Features = group.Select(pf => new FeatureModel
+                        PropertyId = group.First().Property.PropertyId,
+                        PropertyName = group.First().Property.PropertyName
+                    },
+                    Features = group
+                        .Select(pf => new FeatureModel
                         {
                             FeatureId = pf.Feature.FeatureId.ToString(),
                             FeatureName = pf.Feature.FeatureName
-                        }).ToList()
-                    }).ToList();
+                        })
+                        .ToList()
+                })
+                .ToList();
 
-                var model = new PropertyListResponseModel(lst);
-                responseModel = Result<PropertyListResponseModel>.SuccessResult(model);
-            }
-            catch (Exception ex)
-            {
-                responseModel = Result<PropertyListResponseModel>.FailureResult(ex);
-            }
-
-            return responseModel;
+            var model = new PropertyListResponseModel(lst);
+            responseModel = Result<PropertyListResponseModel>.SuccessResult(model);
         }
-
-        public async Task<Result<PropertyResponseModel>> CreateProperty(PropertyRequestModel requestModel)
+        catch (Exception ex)
         {
-            Result<PropertyResponseModel> responseModel;
-            try
-            {
-                var property = requestModel.ToEntity();
-                await _context.TblProperties.AddAsync(property);
-
-                foreach (var feature in requestModel.Features!)
-                {
-                    await _context.TblPropertyFeatures.AddAsync(feature.ToEntity(property.PropertyId));
-                }
-
-                await _context.SaveChangesAsync();
-                responseModel = Result<PropertyResponseModel>.SaveSuccessResult();
-            }
-            catch (Exception ex)
-            {
-                responseModel = Result<PropertyResponseModel>.FailureResult(ex);
-            }
-
-            return responseModel;
+            responseModel = Result<PropertyListResponseModel>.FailureResult(ex);
         }
+
+        return responseModel;
+    }
+
+    public async Task<Result<PropertyResponseModel>> CreateProperty(
+        PropertyRequestModel requestModel
+    )
+    {
+        Result<PropertyResponseModel> responseModel;
+        try
+        {
+            var property = requestModel.ToEntity();
+            await _context.TblProperties.AddAsync(property);
+
+            foreach (var feature in requestModel.Features!)
+            {
+                await _context.TblPropertyFeatures.AddAsync(feature.ToEntity(property.PropertyId));
+            }
+
+            await _context.SaveChangesAsync();
+            responseModel = Result<PropertyResponseModel>.SaveSuccessResult();
+        }
+        catch (Exception ex)
+        {
+            responseModel = Result<PropertyResponseModel>.FailureResult(ex);
+        }
+
+        return responseModel;
     }
 }

@@ -51,7 +51,7 @@ public class FeatureRepository : IFeatureRepository
             responseModel = Result<FeatureResponseModel>.FailureResult(ex);
         }
 
-        result:
+    result:
         return responseModel;
     }
 
@@ -90,7 +90,7 @@ public class FeatureRepository : IFeatureRepository
             responseModel = Result<FeatureResponseModel>.FailureResult(ex);
         }
 
-        result:
+    result:
         return responseModel;
     }
 
@@ -116,7 +116,7 @@ public class FeatureRepository : IFeatureRepository
             responseModel = Result<FeatureResponseModel>.FailureResult(ex);
         }
 
-        result:
+    result:
         return responseModel;
     }
 
