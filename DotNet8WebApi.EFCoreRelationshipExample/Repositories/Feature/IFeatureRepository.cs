@@ -1,6 +1,4 @@
-﻿using DotNet8WebApi.EFCoreRelationshipExample.Models;
-
-namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
 {
     public interface IFeatureRepository
     {

@@ -1,6 +1,4 @@
-﻿using DotNet8WebApi.EFCoreRelationshipExample.Models;
-
-namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property
 {
     public interface IPropertyRepository
     {

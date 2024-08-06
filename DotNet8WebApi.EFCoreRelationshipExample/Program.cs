@@ -1,5 +1,3 @@
-using DotNet8WebApi.EFCoreRelationshipExample.Extensions;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
