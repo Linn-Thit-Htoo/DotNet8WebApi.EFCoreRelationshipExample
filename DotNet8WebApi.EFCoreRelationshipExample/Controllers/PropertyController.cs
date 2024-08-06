@@ -3,7 +3,6 @@ using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
 using DotNet8WebApi.EFCoreRelationshipExample.Models.Property;
 using DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DotNet8WebApi.EFCoreRelationshipExample.Controllers
