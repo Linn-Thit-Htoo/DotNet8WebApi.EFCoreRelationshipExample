@@ -29,7 +29,6 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property
                 var lst = propertyFeatures.GroupBy(pf => pf.Property.PropertyId)
                     .Select(group => new PropertyDataModel
                     {
-                        Id = group.First().Property.PropertyId,
                         Property = new PropertyModel
                         {
                             PropertyId = group.First().Property.PropertyId,
