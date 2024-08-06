@@ -3,7 +3,6 @@ using DotNet8WebApi.EFCoreRelationshipExample.Extensions;
 using DotNet8WebApi.EFCoreRelationshipExample.Models;
 using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
 using DotNet8WebApi.EFCoreRelationshipExample.Models.Property;
-using Microsoft.EntityFrameworkCore;
 
 namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property
 {
