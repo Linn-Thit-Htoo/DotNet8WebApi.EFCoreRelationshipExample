@@ -1,6 +1,3 @@
-﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Models.Property
-{
-    public class PropertyResponseModel
-    {
-    }
-}
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Models.Property;
+
+public class PropertyResponseModel { }
