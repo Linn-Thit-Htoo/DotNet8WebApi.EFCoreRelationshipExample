@@ -1,7 +1,10 @@
 // Global using directives
 
+global using DotNet8WebApi.EFCoreRelationshipExample.AppDbContexts;
 global using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
+global using DotNet8WebApi.EFCoreRelationshipExample.Models.Property;
 global using DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature;
+global using DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Newtonsoft.Json;

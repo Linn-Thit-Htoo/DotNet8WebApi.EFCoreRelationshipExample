@@ -1,7 +1,4 @@
-﻿using DotNet8WebApi.EFCoreRelationshipExample.AppDbContexts;
-using DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property;
-
-namespace DotNet8WebApi.EFCoreRelationshipExample.Extensions
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Extensions
 {
     public static class DependencyInjection
     {
