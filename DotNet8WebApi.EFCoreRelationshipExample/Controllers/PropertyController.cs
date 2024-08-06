@@ -1,5 +1,4 @@
 ﻿using DotNet8WebApi.EFCoreRelationshipExample.AppDbContexts;
-using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
 using DotNet8WebApi.EFCoreRelationshipExample.Models.Property;
 using DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property;
 using Microsoft.AspNetCore.Http;

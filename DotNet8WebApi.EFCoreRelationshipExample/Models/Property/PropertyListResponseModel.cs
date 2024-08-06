@@ -1,6 +1,4 @@
-﻿using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
-
-namespace DotNet8WebApi.EFCoreRelationshipExample.Models.Property
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Models.Property
 {
     public class PropertyDataModel
     {

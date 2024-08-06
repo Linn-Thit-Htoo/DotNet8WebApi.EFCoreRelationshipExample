@@ -1,5 +1,4 @@
 ﻿using DotNet8WebApi.EFCoreRelationshipExample.Models;
-using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
 
 namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
 {

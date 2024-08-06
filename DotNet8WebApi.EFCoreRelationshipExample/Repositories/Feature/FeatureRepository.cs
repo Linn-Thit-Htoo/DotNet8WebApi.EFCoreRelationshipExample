@@ -1,7 +1,6 @@
 ﻿using DotNet8WebApi.EFCoreRelationshipExample.AppDbContexts;
 using DotNet8WebApi.EFCoreRelationshipExample.Extensions;
 using DotNet8WebApi.EFCoreRelationshipExample.Models;
-using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
 using System.Linq.Expressions;
 
 namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
