@@ -94,7 +94,7 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
             return responseModel;
         }
 
-        public async Task<Result<FeatureResponseModel>> DeleteFeature(int id)
+        public async Task<Result<FeatureResponseModel>> DeleteFeature(string id)
         {
             Result<FeatureResponseModel> responseModel;
             try

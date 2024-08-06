@@ -36,5 +36,12 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Controllers
             var result = await _featureRepository.UpdateFeature(requestModel, id);
             return Content(result);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteFeature(string id)
+        {
+            var result = await _featureRepository.DeleteFeature(id);
+            return Content(result);
+        }
     }
 }
