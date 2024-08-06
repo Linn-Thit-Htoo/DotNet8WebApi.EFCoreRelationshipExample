@@ -7,5 +7,6 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
     {
         Task<Result<FeatureListResponseModel>> GetFeatureList();
         Task<Result<FeatureResponseModel>> CreateFeature(FeatureRequestModel requestModel);
+        Task<Result<FeatureResponseModel>> UpdateFeature(FeatureRequestModel requestModel, string id);
     }
 }

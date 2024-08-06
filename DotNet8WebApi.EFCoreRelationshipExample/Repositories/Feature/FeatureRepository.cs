@@ -3,6 +3,7 @@ using DotNet8WebApi.EFCoreRelationshipExample.Extensions;
 using DotNet8WebApi.EFCoreRelationshipExample.Models;
 using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
 {
@@ -38,7 +39,7 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
             Result<FeatureResponseModel> responseModel;
             try
             {
-                bool featureDuplicate = await FeatureDuplicate(requestModel.FeatureName);
+                bool featureDuplicate = await FeatureDuplicate(x => x.FeatureName == requestModel.FeatureName);
                 if (featureDuplicate)
                 {
                     responseModel = Result<FeatureResponseModel>.DuplicateResult("Feature Duplicate.");
@@ -59,9 +60,49 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
             return responseModel;
         }
 
-        private async Task<bool> FeatureDuplicate(string featureName)
+        private async Task<bool> FeatureDuplicate(Expression<Func<TblFeature, bool>> expression)
         {
-            return await _context.TblFeatures.AnyAsync(x => x.FeatureName == featureName);
+            return await _context.TblFeatures.AnyAsync(expression);
         }
+
+        public async Task<Result<FeatureResponseModel>> UpdateFeature(FeatureRequestModel requestModel, string id)
+        {
+            Result<FeatureResponseModel> responseModel;
+            try
+            {
+                bool featureDuplicate = await FeatureDuplicate(x => x.FeatureName == requestModel.FeatureName && x.FeatureId != id);
+                if (featureDuplicate)
+                {
+                    responseModel = GetFeatureDuplicateResult();
+                    goto result;
+                }
+
+                var item = await _context.TblFeatures.FindAsync(id);
+                if (item is null)
+                {
+                    responseModel = GetFeatureNotFoundResult();
+                    goto result;
+                }
+
+                item.FeatureName = requestModel.FeatureName;
+                _context.TblFeatures.Update(item);
+                await _context.SaveChangesAsync();
+
+                responseModel = Result<FeatureResponseModel>.UpdateSuccessResult();
+            }
+            catch (Exception ex)
+            {
+                responseModel = Result<FeatureResponseModel>.FailureResult(ex);
+            }
+
+        result:
+            return responseModel;
+        }
+
+        private Result<FeatureResponseModel> GetFeatureDuplicateResult()
+            => Result<FeatureResponseModel>.DuplicateResult("Feature Duplicate.");
+
+        private Result<FeatureResponseModel> GetFeatureNotFoundResult() =>
+            Result<FeatureResponseModel>.NotFoundResult("Feature Not Found.");
     }
 }
