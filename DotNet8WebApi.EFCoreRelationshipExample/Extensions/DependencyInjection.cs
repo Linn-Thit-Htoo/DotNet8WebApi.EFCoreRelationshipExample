@@ -7,8 +7,7 @@ public static class DependencyInjection
         WebApplicationBuilder builder
     )
     {
-        services.AddDbContextService(builder).AddRepositoryService();
-        return services;
+        return services.AddDbContextService(builder).AddRepositoryService();
     }
 
     private static IServiceCollection AddDbContextService(
@@ -31,8 +30,8 @@ public static class DependencyInjection
 
     private static IServiceCollection AddRepositoryService(this IServiceCollection services)
     {
-        services.AddScoped<IFeatureRepository, FeatureRepository>();
-        services.AddScoped<IPropertyRepository, PropertyRepository>();
-        return services;
+        return services
+            .AddScoped<IFeatureRepository, FeatureRepository>()
+            .AddScoped<IPropertyRepository, PropertyRepository>();
     }
 }
