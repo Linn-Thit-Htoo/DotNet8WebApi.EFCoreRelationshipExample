@@ -94,9 +94,30 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
             return responseModel;
         }
 
-        public Task<Result<FeatureResponseModel>> DeleteFeature(int id)
+        public async Task<Result<FeatureResponseModel>> DeleteFeature(int id)
         {
-            throw new NotImplementedException();
+            Result<FeatureResponseModel> responseModel;
+            try
+            {
+                var item = await _context.TblFeatures.FindAsync(id);
+                if (item is null)
+                {
+                    responseModel = GetFeatureNotFoundResult();
+                    goto result;
+                }
+
+                _context.TblFeatures.Remove(item);
+                await _context.SaveChangesAsync();
+
+                responseModel = Result<FeatureResponseModel>.DeleteSuccessResult();
+            }
+            catch (Exception ex)
+            {
+                responseModel = Result<FeatureResponseModel>.FailureResult(ex);
+            }
+
+        result:
+            return responseModel;
         }
 
         private async Task<bool> FeatureDuplicate(Expression<Func<TblFeature, bool>> expression)
