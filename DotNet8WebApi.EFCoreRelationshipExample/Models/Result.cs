@@ -36,20 +36,14 @@ public class Result<T>
         };
     }
 
-    public static Result<T> SaveSuccessResult(string message = "Saving Successful.")
-    {
-        return Result<T>.SuccessResult(message);
-    }
+    public static Result<T> SaveSuccessResult(string message = "Saving Successful.") =>
+        Result<T>.SuccessResult(message);
 
-    public static Result<T> UpdateSuccessResult(string message = "Updating Successful.")
-    {
-        return Result<T>.SuccessResult(message);
-    }
+    public static Result<T> UpdateSuccessResult(string message = "Updating Successful.") =>
+        Result<T>.SuccessResult(message);
 
-    public static Result<T> DeleteSuccessResult(string message = "Deleting Successful.")
-    {
-        return Result<T>.SuccessResult(message);
-    }
+    public static Result<T> DeleteSuccessResult(string message = "Deleting Successful.") =>
+        Result<T>.SuccessResult(message);
 
     public static Result<T> FailureResult(
         string message = "Fail.",
@@ -74,13 +68,9 @@ public class Result<T>
         };
     }
 
-    public static Result<T> NotFoundResult(string message = "No Data Found.")
-    {
-        return Result<T>.FailureResult(message, EnumStatusCode.NotFound);
-    }
+    public static Result<T> NotFoundResult(string message = "No Data Found.") =>
+        Result<T>.FailureResult(message, EnumStatusCode.NotFound);
 
-    public static Result<T> DuplicateResult(string message = "Duplicate Data.")
-    {
-        return Result<T>.FailureResult(message, EnumStatusCode.Conflict);
-    }
+    public static Result<T> DuplicateResult(string message = "Duplicate Data.") =>
+        Result<T>.FailureResult(message, EnumStatusCode.Conflict);
 }
