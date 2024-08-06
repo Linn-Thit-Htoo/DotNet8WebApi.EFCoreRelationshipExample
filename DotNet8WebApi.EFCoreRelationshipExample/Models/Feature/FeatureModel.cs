@@ -1,4 +1,4 @@
-﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Models
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Models.Feature
 {
     public class FeatureModel
     {
