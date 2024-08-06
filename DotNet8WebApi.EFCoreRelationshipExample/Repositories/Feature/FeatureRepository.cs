@@ -60,11 +60,6 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
             return responseModel;
         }
 
-        private async Task<bool> FeatureDuplicate(Expression<Func<TblFeature, bool>> expression)
-        {
-            return await _context.TblFeatures.AnyAsync(expression);
-        }
-
         public async Task<Result<FeatureResponseModel>> UpdateFeature(FeatureRequestModel requestModel, string id)
         {
             Result<FeatureResponseModel> responseModel;
@@ -97,6 +92,16 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Feature
 
         result:
             return responseModel;
+        }
+
+        public Task<Result<FeatureResponseModel>> DeleteFeature(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        private async Task<bool> FeatureDuplicate(Expression<Func<TblFeature, bool>> expression)
+        {
+            return await _context.TblFeatures.AnyAsync(expression);
         }
 
         private Result<FeatureResponseModel> GetFeatureDuplicateResult()
