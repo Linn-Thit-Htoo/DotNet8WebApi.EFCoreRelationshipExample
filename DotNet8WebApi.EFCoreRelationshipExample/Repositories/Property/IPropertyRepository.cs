@@ -1,8 +1,7 @@
-﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property
+﻿namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property;
+
+public interface IPropertyRepository
 {
-    public interface IPropertyRepository
-    {
-        Task<Result<PropertyListResponseModel>> GetPropertyList();
-        Task<Result<PropertyResponseModel>> CreateProperty(PropertyRequestModel requestModel);
-    }
+    Task<Result<PropertyListResponseModel>> GetPropertyList();
+    Task<Result<PropertyResponseModel>> CreateProperty(PropertyRequestModel requestModel);
 }
