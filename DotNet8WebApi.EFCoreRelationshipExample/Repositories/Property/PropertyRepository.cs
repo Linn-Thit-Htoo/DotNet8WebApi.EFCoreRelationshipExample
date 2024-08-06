@@ -1,6 +1,7 @@
 ﻿using DotNet8WebApi.EFCoreRelationshipExample.AppDbContexts;
 using DotNet8WebApi.EFCoreRelationshipExample.Extensions;
 using DotNet8WebApi.EFCoreRelationshipExample.Models;
+using DotNet8WebApi.EFCoreRelationshipExample.Models.Feature;
 using DotNet8WebApi.EFCoreRelationshipExample.Models.Property;
 using Microsoft.EntityFrameworkCore;
 
@@ -20,12 +21,29 @@ namespace DotNet8WebApi.EFCoreRelationshipExample.Repositories.Property
             Result<PropertyListResponseModel> responseModel;
             try
             {
-                var lst = await _context.TblPropertyFeatures
+                var propertyFeatures = await _context.TblPropertyFeatures
                     .Include(x => x.Property)
                     .Include(x => x.Feature)
                     .ToListAsync();
 
-                responseModel = Result<PropertyListResponseModel>.SuccessResult();
+                var lst = propertyFeatures.GroupBy(pf => pf.Property.PropertyId)
+                    .Select(group => new PropertyDataModel
+                    {
+                        Id = group.First().Property.PropertyId,
+                        Property = new PropertyModel
+                        {
+                            PropertyId = group.First().Property.PropertyId,
+                            PropertyName = group.First().Property.PropertyName
+                        },
+                        Features = group.Select(pf => new FeatureModel
+                        {
+                            FeatureId = pf.Feature.FeatureId.ToString(),
+                            FeatureName = pf.Feature.FeatureName
+                        }).ToList()
+                    }).ToList();
+
+                var model = new PropertyListResponseModel(lst);
+                responseModel = Result<PropertyListResponseModel>.SuccessResult(model);
             }
             catch (Exception ex)
             {
